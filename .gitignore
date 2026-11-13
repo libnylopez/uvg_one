@@ -1,0 +1,31 @@
+# Secretos
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Datos locales (en Docker viven en volúmenes)
+backend/data/
+data/
+
+# Sistema / editor
+.DS_Store
+.vscode/
+.idea/
+~$*
+
+# Logs locales
+.logs/

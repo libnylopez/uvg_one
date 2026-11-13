@@ -1,0 +1,67 @@
+# UVG ONE — orquestación local. Proyecto Docker independiente ("uvg_one"): contenedores,
+# red y volúmenes propios, sin compartir nada con otros proyectos.
+
+name: uvg_one
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-uvg_one}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en .env}
+      POSTGRES_DB: ${POSTGRES_DB:-uvg_one}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-uvg_one} -d ${POSTGRES_DB:-uvg_one}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    # Solo accesible desde esta máquina (para desarrollo y pruebas locales).
+    ports:
+      - "127.0.0.1:5442:5432"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../infrastructure/docker/backend.Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-uvg_one}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-uvg_one}
+      CHROMA_PERSIST_DIR: /app/data/chroma
+      DOCUMENTS_DIR: /app/documentos_uvg
+      CORS_ORIGINS: http://localhost:5180,http://127.0.0.1:5180
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - chroma_data:/app/data/chroma
+      # Los PDF se leen directamente de la carpeta del proyecto, en solo lectura.
+      - ./documentos_uvg:/app/documentos_uvg:ro
+    ports:
+      - "8010:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 180s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../infrastructure/docker/frontend.Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8010
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "5180:80"
+
+volumes:
+  postgres_data:
+  chroma_data:
