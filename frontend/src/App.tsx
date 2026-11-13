@@ -9,8 +9,10 @@ import type { ChatMessage, Conversation, Health } from "./types";
 const SUGGESTIONS = [
   "¿Qué carreras ofrece la UVG Altiplano?",
   "¿Cuáles son los pasos para inscribirme como estudiante de primer ingreso?",
-  "¿Cuándo inician las clases del primer semestre?",
+  "¿Cuánto cuesta cada nivel del programa de inglés?",
   "¿Qué tipos de ayuda financiera existen?",
+  "¿Cuándo es la Feria de becas II?",
+  "¿Cómo armo un club en la universidad?",
 ];
 
 let localId = 0;
@@ -27,11 +29,8 @@ function fromHistory(conversation: Conversation | undefined): ChatMessage[] {
     status:
       message.role === "student"
         ? undefined
-        : message.is_grounded === true
-          ? "answered"
-          : message.is_grounded === false
-            ? "abstained"
-            : "smalltalk",
+        : (message.status ??
+          (message.is_grounded === true ? "answered" : message.is_grounded === false ? "abstained" : "smalltalk")),
   }));
 }
 
@@ -85,6 +84,7 @@ export function App() {
                 status: answer.status,
                 confidence: answer.confidence,
                 sources: answer.sources,
+                simulated: answer.usage?.simulated ?? false,
               }
             : message,
         ),
@@ -115,10 +115,10 @@ export function App() {
     <div className="app">
       <header className="header">
         <div className="brand">
-          <img src="/logo-uvg-altiplano.png" alt="UVG Campus Altiplano" className="logo" />
+          <img src="/logo-uvg-altiplano.png" alt="" className="logo" />
           <div>
             <h1>UVG ONE</h1>
-            <p>Asistente universitario · Campus Altiplano</p>
+            <p>Asistente universitario inteligente · Campus Altiplano</p>
           </div>
         </div>
         <button type="button" className="secondary" onClick={newConversation} disabled={sending}>
@@ -126,6 +126,12 @@ export function App() {
         </button>
       </header>
 
+      {health?.llm_mode === "simulado" && (
+        <div className="banner banner-simulation" role="status">
+          <strong>MODO SIMULACIÓN.</strong> Las respuestas se arman localmente con el texto recuperado de los
+          documentos; no las genera Claude. Solo para pruebas o demostración sin conexión.
+        </div>
+      )}
       {connectionError && <div className="banner banner-error">{connectionError}</div>}
       {health && !health.llm_configured && (
         <div className="banner banner-warning">
@@ -144,9 +150,11 @@ export function App() {
           <div className="welcome">
             <h2>¡Hola! Soy UVG ONE</h2>
             <p>
-              Respondo preguntas sobre la Universidad del Valle de Guatemala, Campus Altiplano, usando únicamente sus
-              documentos oficiales, y te muestro de dónde sale cada dato.
+              Pregúntame sobre carreras, admisión, calendario académico, ayudas financieras o grupos estudiantiles de la
+              UVG Campus Altiplano. Respondo solo con sus documentos oficiales y puedes abrir cada fuente para
+              verificarla.
             </p>
+            <p className="welcome-hint">Prueba con una de estas preguntas:</p>
             <div className="suggestions">
               {SUGGESTIONS.map((suggestion) => (
                 <button key={suggestion} type="button" onClick={() => send(suggestion)} disabled={sending}>
@@ -164,8 +172,9 @@ export function App() {
       <footer className="footer">
         <Composer disabled={sending} onSend={send} />
         <p className="disclaimer">
+          Prototipo académico del curso de Inteligencia Artificial · No es un servicio oficial de la UVG ·{" "}
           {health
-            ? `${health.indexed_chunks} fragmentos de documentos oficiales indexados · Modelo: ${health.llm_model}`
+            ? `${health.indexed_chunks} fragmentos indexados · ${health.llm_mode === "simulado" ? "simulación" : health.llm_model}`
             : "Conectando con el servidor…"}
         </p>
       </footer>

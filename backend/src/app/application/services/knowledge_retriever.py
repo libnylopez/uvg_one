@@ -84,7 +84,7 @@ class KnowledgeRetriever:
         return self._interleave(answered)[: self._settings.top_k * max(1, len(answered))]
 
     async def best_per_document(
-        self, query: str, document_ids: Sequence[UUID], per_document: int = 4
+        self, query: str, document_ids: Sequence[UUID], per_document: int = 4, keep: int = 1
     ) -> list[RetrievedChunk]:
         """El mejor fragmento propio de cada documento, sin umbral de evidencia.
 
@@ -105,8 +105,7 @@ class KnowledgeRetriever:
         best: list[RetrievedChunk] = []
         for found in per_doc:
             own = [item for item in found if seen_in[fingerprint(item)] == 1]
-            if own or found:
-                best.append((own or found)[0])
+            best.extend((own or found)[:keep])
         best.sort(key=lambda item: item.score.value, reverse=True)
         return best
 

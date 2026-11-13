@@ -69,6 +69,8 @@ class MessageModel(Base):
     source_document_names: Mapped[list[str]] = mapped_column(ARRAY(Text), nullable=False, default=list)
     # Nullable: los mensajes anteriores a ADR-0014 no tienen citas estructuradas.
     sources: Mapped[list[dict[str, object]] | None] = mapped_column(JSONB, nullable=True)
+    topic_query: Mapped[str | None] = mapped_column(Text, nullable=True)
+    status: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     conversation: Mapped[ConversationModel] = relationship(back_populates="messages")
 

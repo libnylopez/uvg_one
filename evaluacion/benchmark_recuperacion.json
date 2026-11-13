@@ -1,0 +1,196 @@
+[
+ {
+  "id": "R01",
+  "tipo": "directa",
+  "pregunta": "¿Cuánto cuesta cada nivel del programa de inglés?",
+  "documento": "Centro de Idiomas",
+  "evidencia": "Q500"
+ },
+ {
+  "id": "R02",
+  "tipo": "directa",
+  "pregunta": "¿Cuántos niveles tiene el programa de cursos libres de inglés?",
+  "documento": "Centro de Idiomas",
+  "evidencia": "22 niveles"
+ },
+ {
+  "id": "R03",
+  "tipo": "directa",
+  "pregunta": "¿Cuándo es el último día para pagar la cuota de septiembre sin recargo?",
+  "documento": "Calendario",
+  "evidencia": "17 de septiembre"
+ },
+ {
+  "id": "R04",
+  "tipo": "directa",
+  "pregunta": "¿Cuándo es la Feria de becas II?",
+  "documento": "Calendario",
+  "evidencia": "Feria de becas"
+ },
+ {
+  "id": "R05",
+  "tipo": "directa",
+  "pregunta": "¿Cuándo es la semana de inscripción y asignación de cursos para el primer ciclo 2027?",
+  "documento": "Calendario",
+  "evidencia": "1-6 de diciembre"
+ },
+ {
+  "id": "R06",
+  "tipo": "directa",
+  "pregunta": "¿Qué es el periodo de Blackout del sistema de Registro Académico?",
+  "documento": "Calendario",
+  "evidencia": "Blackout"
+ },
+ {
+  "id": "R07",
+  "tipo": "directa",
+  "pregunta": "¿Qué requisitos debe cumplir un estudiante para integrar la junta directiva de una asociación estudiantil?",
+  "documento": "grupos estudiantiles",
+  "evidencia": "promedio mínimo de 70"
+ },
+ {
+  "id": "R08",
+  "tipo": "directa",
+  "pregunta": "¿Qué tipos de ayuda financiera existen?",
+  "documento": "ayudas financieras",
+  "evidencia": "crédito educativo"
+ },
+ {
+  "id": "R09",
+  "tipo": "directa",
+  "pregunta": "¿Qué condiciones establece el artículo 18 del reglamento de ayudas financieras?",
+  "documento": "ayudas financieras",
+  "evidencia": "Artículo 18"
+ },
+ {
+  "id": "R10",
+  "tipo": "directa",
+  "pregunta": "¿Cuáles son los pasos para inscribirme como estudiante de primer ingreso?",
+  "documento": "Proceso de Admisión",
+  "evidencia": "matrícula"
+ },
+ {
+  "id": "R11",
+  "tipo": "directa",
+  "pregunta": "¿Qué es la prueba diagnóstica PAA y quién la agenda?",
+  "documento": "Proceso de Admisión",
+  "evidencia": "PAA"
+ },
+ {
+  "id": "R12",
+  "tipo": "directa",
+  "pregunta": "¿Cuánto dura la Licenciatura en Turismo?",
+  "documento": "Turismo",
+  "evidencia": "5 años"
+ },
+ {
+  "id": "R13",
+  "tipo": "directa",
+  "pregunta": "¿Cuánto dura la maestría?",
+  "documento": "Maestría",
+  "evidencia": "2 años"
+ },
+ {
+  "id": "R14",
+  "tipo": "directa",
+  "pregunta": "¿Qué es el Instituto Tecnológico ITEC?",
+  "documento": "ITEC",
+  "evidencia": "Bachillerato"
+ },
+ {
+  "id": "R15",
+  "tipo": "directa",
+  "pregunta": "¿Cuál es el correo de la carrera de Tecnología de Sistemas Informáticos?",
+  "documento": "Informática",
+  "evidencia": "ca.informatica@uvg.edu.gt"
+ },
+ {
+  "id": "R16",
+  "tipo": "relacional",
+  "pregunta": "¿Qué ingenierías ofrece la UVG Altiplano y cuánto duran?",
+  "documentos_requeridos": [
+   "Agroforestería",
+   "Tecnología Industrial",
+   "Agrícola y Pecuaria"
+  ]
+ },
+ {
+  "id": "R17",
+  "tipo": "panorama",
+  "pregunta": "¿Qué carreras ofrece la UVG Altiplano?",
+  "min_documentos": 8
+ },
+ {
+  "id": "R18",
+  "tipo": "informal",
+  "pregunta": "cuanto cuesta el curzo de ingles",
+  "documento": "Centro de Idiomas",
+  "evidencia": "Q500"
+ },
+ {
+  "id": "R19",
+  "tipo": "informal",
+  "pregunta": "q necesito pa inscribirme en la u",
+  "documento": "Proceso de Admisión",
+  "evidencia": "inscripción"
+ },
+ {
+  "id": "R20",
+  "tipo": "sinonimo",
+  "pregunta": "¿Hasta cuándo puedo pagar la mensualidad de septiembre?",
+  "documento": "Calendario",
+  "evidencia": "cuota de estudios de septiembre"
+ },
+ {
+  "id": "R21",
+  "tipo": "sinonimo",
+  "pregunta": "¿Cómo armo un club en la universidad?",
+  "documento": "grupos estudiantiles",
+  "evidencia": "club"
+ },
+ {
+  "id": "R22",
+  "tipo": "seguimiento",
+  "tema": "¿Qué es la Licenciatura en Tecnología de Sistemas Informáticos?",
+  "pregunta": "¿Cuánto dura esa carrera?",
+  "documento": "Informática",
+  "evidencia": "5 AÑOS"
+ },
+ {
+  "id": "R23",
+  "tipo": "seguimiento",
+  "tema": "¿Qué es la Licenciatura en Tecnología de Sistemas Informáticos?",
+  "pregunta": "¿Y sus horarios?",
+  "documento": "Informática",
+  "evidencia": "Jueves y viernes"
+ },
+ {
+  "id": "R24",
+  "tipo": "seguimiento",
+  "tema": "¿Qué es la Licenciatura en Turismo?",
+  "pregunta": "¿Dónde pido más información?",
+  "documento": "Turismo",
+  "evidencia": "ca.turismo@uvg.edu.gt"
+ },
+ {
+  "id": "R25",
+  "tipo": "abstencion",
+  "pregunta": "¿Cuál es la capital de Francia?"
+ },
+ {
+  "id": "R26",
+  "tipo": "abstencion",
+  "pregunta": "¿Quién ganó el mundial de 2022?"
+ },
+ {
+  "id": "R27",
+  "tipo": "abstencion",
+  "pregunta": "¿Cómo preparo un pastel de chocolate?"
+ },
+ {
+  "id": "R28",
+  "tipo": "abstencion_llm",
+  "pregunta": "¿Cuánto cuesta la carrera de Medicina en la UVG Altiplano?",
+  "nota": "Puede recuperar folletos; la abstención la decide la verificación de Claude."
+ }
+]

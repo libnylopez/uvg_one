@@ -12,3 +12,6 @@ class LLMCompletion:
     input_tokens: int
     output_tokens: int
     model: str
+    cost_usd: float = 0.0
+    latency_ms: int = 0
+    simulated: bool = False

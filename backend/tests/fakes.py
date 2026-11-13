@@ -110,14 +110,19 @@ class ScriptedLLM(LLMPort):
         self.error = error
         self.calls: list[dict[str, Any]] = []
 
-    async def complete(self, system_prompt, user_prompt, output_schema, output_schema_name) -> LLMCompletion:
+    async def complete(self, system_prompt, user_prompt, output_schema, output_schema_name, max_tokens=None) -> LLMCompletion:
         self.calls.append({"schema": output_schema_name, "user_prompt": user_prompt})
         if self.error:
             raise self.error
-        return LLMCompletion(content=self.responses[output_schema_name], input_tokens=100, output_tokens=50, model="fake")
+        return LLMCompletion(
+            content=self.responses[output_schema_name], input_tokens=1000, output_tokens=200, model="fake",
+            cost_usd=0.0002,
+        )
 
 
-def make_passage(document_id: UUID, text: str, title: str = "Proceso de Admisión", page: int = 2) -> RetrievedChunk:
+def make_passage(
+    document_id: UUID, text: str, title: str = "Proceso de Admisión", page: int = 2, page_count: int | None = 3
+) -> RetrievedChunk:
     return RetrievedChunk(
         chunk=Chunk(
             id=new_id(),
@@ -125,7 +130,7 @@ def make_passage(document_id: UUID, text: str, title: str = "Proceso de Admisió
             text=text,
             position=0,
             anchor=SectionAnchor(section="Requisitos", page_start=page, page_end=page),
-            document=DocumentFacts(title=title),
+            document=DocumentFacts(title=title, page_count=page_count),
         ),
         score=SimilarityScore(0.8),
     )
@@ -137,7 +142,11 @@ class FixedRetrieval:
     def __init__(self, passages: list[RetrievedChunk]) -> None:
         self.passages = passages
         self.queries: list[str] = []
+        self.originals: list[Chunk] = []
 
-    async def retrieve(self, query: str) -> RetrievedContext:
+    def origin_chunks(self, chunk_ids):
+        return list(self.originals)
+
+    async def retrieve(self, query: str, topic: str | None = None) -> RetrievedContext:
         self.queries.append(query)
         return RetrievedContext(QueryAnalyzer.analyze(query), list(self.passages), list(self.passages), False)

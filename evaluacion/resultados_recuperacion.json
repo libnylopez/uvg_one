@@ -1,0 +1,568 @@
+{
+  "resumen": {
+    "preguntas": 28,
+    "evaluadas": 27,
+    "correctas": 27,
+    "documento_top1": 22,
+    "con_documento_esperado": 22,
+    "caracteres_contexto_promedio": 3724
+  },
+  "resultados": [
+    {
+      "id": "R01",
+      "tipo": "directa",
+      "pregunta": "¿Cuánto cuesta cada nivel del programa de inglés?",
+      "consulta": "¿Cuánto cuesta cada nivel del programa de inglés?",
+      "pasajes": 7,
+      "caracteres_contexto": 5158,
+      "documentos": [
+        "Centro de Idiomas 2025",
+        "Reglamento de ayudas financieras",
+        "Facultad de Educación 2025"
+      ],
+      "primer_pasaje": "Centro de Idiomas 2025 · Develop your potencial in: · pág. 2",
+      "documento_esperado": "Centro de Idiomas",
+      "evidencia_esperada": "Q500",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 2,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R02",
+      "tipo": "directa",
+      "pregunta": "¿Cuántos niveles tiene el programa de cursos libres de inglés?",
+      "consulta": "¿Cuántos niveles tiene el programa de cursos libres de inglés?",
+      "pasajes": 7,
+      "caracteres_contexto": 4124,
+      "documentos": [
+        "Centro de Idiomas 2025",
+        "Facultad de Educación 2025",
+        "Reglamento de ayudas financieras"
+      ],
+      "primer_pasaje": "Centro de Idiomas 2025 · Develop your potencial in: · pág. 2",
+      "documento_esperado": "Centro de Idiomas",
+      "evidencia_esperada": "22 niveles",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R03",
+      "tipo": "directa",
+      "pregunta": "¿Cuándo es el último día para pagar la cuota de septiembre sin recargo?",
+      "consulta": "¿Cuándo es el último día para pagar la cuota de septiembre sin recargo?",
+      "pasajes": 2,
+      "caracteres_contexto": 3965,
+      "documentos": [
+        "Calendario Académico"
+      ],
+      "primer_pasaje": "Calendario Académico · — · pág. 2",
+      "documento_esperado": "Calendario",
+      "evidencia_esperada": "17 de septiembre",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R04",
+      "tipo": "directa",
+      "pregunta": "¿Cuándo es la Feria de becas II?",
+      "consulta": "¿Cuándo es la Feria de becas II?",
+      "pasajes": 6,
+      "caracteres_contexto": 3453,
+      "documentos": [
+        "Calendario Académico",
+        "Reglamento de ayudas financieras"
+      ],
+      "primer_pasaje": "Calendario Académico · — · pág. 2",
+      "documento_esperado": "Calendario",
+      "evidencia_esperada": "Feria de becas",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R05",
+      "tipo": "directa",
+      "pregunta": "¿Cuándo es la semana de inscripción y asignación de cursos para el primer ciclo 2027?",
+      "consulta": "¿Cuándo es la semana de inscripción y asignación de cursos para el primer ciclo 2027?",
+      "pasajes": 4,
+      "caracteres_contexto": 3798,
+      "documentos": [
+        "Calendario Académico"
+      ],
+      "primer_pasaje": "Calendario Académico · — · pág. 3",
+      "documento_esperado": "Calendario",
+      "evidencia_esperada": "1-6 de diciembre",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 3,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R06",
+      "tipo": "directa",
+      "pregunta": "¿Qué es el periodo de Blackout del sistema de Registro Académico?",
+      "consulta": "¿Qué es el periodo de Blackout del sistema de Registro Académico?",
+      "pasajes": 4,
+      "caracteres_contexto": 4106,
+      "documentos": [
+        "Calendario Académico"
+      ],
+      "primer_pasaje": "Calendario Académico · — · pág. 2",
+      "documento_esperado": "Calendario",
+      "evidencia_esperada": "Blackout",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 4,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R07",
+      "tipo": "directa",
+      "pregunta": "¿Qué requisitos debe cumplir un estudiante para integrar la junta directiva de una asociación estudiantil?",
+      "consulta": "¿Qué requisitos debe cumplir un estudiante para integrar la junta directiva de una asociación estudiantil?",
+      "pasajes": 7,
+      "caracteres_contexto": 4122,
+      "documentos": [
+        "Reglamento de grupos estudiantiles"
+      ],
+      "primer_pasaje": "Reglamento de grupos estudiantiles · Capítulo 2 · Artículo 12 · pág. 6",
+      "documento_esperado": "grupos estudiantiles",
+      "evidencia_esperada": "promedio mínimo de 70",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R08",
+      "tipo": "directa",
+      "pregunta": "¿Qué tipos de ayuda financiera existen?",
+      "consulta": "¿Qué tipos de ayuda financiera existen?",
+      "pasajes": 6,
+      "caracteres_contexto": 4779,
+      "documentos": [
+        "Reglamento de ayudas financieras"
+      ],
+      "primer_pasaje": "Reglamento de ayudas financieras · Capítulo 1 · Artículo 5. Estructura del Programa de Ayudas Financieras · pág. 3",
+      "documento_esperado": "ayudas financieras",
+      "evidencia_esperada": "crédito educativo",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 2,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R09",
+      "tipo": "directa",
+      "pregunta": "¿Qué condiciones establece el artículo 18 del reglamento de ayudas financieras?",
+      "consulta": "¿Qué condiciones establece el artículo 18 del reglamento de ayudas financieras?",
+      "pasajes": 6,
+      "caracteres_contexto": 5216,
+      "documentos": [
+        "Reglamento de ayudas financieras"
+      ],
+      "primer_pasaje": "Reglamento de ayudas financieras · Capítulo 1 · Artículo 6. Directrices Generales del Programa · pág. 4",
+      "documento_esperado": "ayudas financieras",
+      "evidencia_esperada": "Artículo 18",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 4,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R10",
+      "tipo": "directa",
+      "pregunta": "¿Cuáles son los pasos para inscribirme como estudiante de primer ingreso?",
+      "consulta": "¿Cuáles son los pasos para inscribirme como estudiante de primer ingreso?",
+      "pasajes": 1,
+      "caracteres_contexto": 3261,
+      "documentos": [
+        "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso"
+      ],
+      "primer_pasaje": "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso · — · pág. 1",
+      "documento_esperado": "Proceso de Admisión",
+      "evidencia_esperada": "matrícula",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R11",
+      "tipo": "directa",
+      "pregunta": "¿Qué es la prueba diagnóstica PAA y quién la agenda?",
+      "consulta": "¿Qué es la prueba diagnóstica PAA y quién la agenda?",
+      "pasajes": 6,
+      "caracteres_contexto": 3904,
+      "documentos": [
+        "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso",
+        "Reglamento de ayudas financieras",
+        "Calendario Académico"
+      ],
+      "primer_pasaje": "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso · — · pág. 1",
+      "documento_esperado": "Proceso de Admisión",
+      "evidencia_esperada": "PAA",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 2,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R12",
+      "tipo": "directa",
+      "pregunta": "¿Cuánto dura la Licenciatura en Turismo?",
+      "consulta": "¿Cuánto dura la Licenciatura en Turismo?",
+      "pasajes": 3,
+      "caracteres_contexto": 2664,
+      "documentos": [
+        "Turismo 2025"
+      ],
+      "primer_pasaje": "Turismo 2025 · — · pág. 1",
+      "documento_esperado": "Turismo",
+      "evidencia_esperada": "5 años",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 3,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R13",
+      "tipo": "directa",
+      "pregunta": "¿Cuánto dura la maestría?",
+      "consulta": "¿Cuánto dura la maestría?",
+      "pasajes": 2,
+      "caracteres_contexto": 1473,
+      "documentos": [
+        "Maestría 2025"
+      ],
+      "primer_pasaje": "Maestría 2025 · — · pág. 1",
+      "documento_esperado": "Maestría",
+      "evidencia_esperada": "2 años",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R14",
+      "tipo": "directa",
+      "pregunta": "¿Qué es el Instituto Tecnológico ITEC?",
+      "consulta": "¿Qué es el Instituto Tecnológico ITEC?",
+      "pasajes": 4,
+      "caracteres_contexto": 2594,
+      "documentos": [
+        "ITEC 2025"
+      ],
+      "primer_pasaje": "ITEC 2025 · — · pág. 1",
+      "documento_esperado": "ITEC",
+      "evidencia_esperada": "Bachillerato",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R15",
+      "tipo": "directa",
+      "pregunta": "¿Cuál es el correo de la carrera de Tecnología de Sistemas Informáticos?",
+      "consulta": "¿Cuál es el correo de la carrera de Tecnología de Sistemas Informáticos?",
+      "pasajes": 6,
+      "caracteres_contexto": 4234,
+      "documentos": [
+        "Informática 2025",
+        "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso",
+        "Tecnología Industrial 2025 1"
+      ],
+      "primer_pasaje": "Informática 2025 · Tecnología de sistemas informáticos · pág. 2",
+      "documento_esperado": "Informática",
+      "evidencia_esperada": "ca.informatica@uvg.edu.gt",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 2,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R16",
+      "tipo": "relacional",
+      "pregunta": "¿Qué ingenierías ofrece la UVG Altiplano y cuánto duran?",
+      "consulta": "¿Qué ingenierías ofrece la UVG Altiplano y cuánto duran?",
+      "pasajes": 14,
+      "caracteres_contexto": 4322,
+      "documentos": [
+        "Agroforestería 2025",
+        "Tecnología Industrial 2025 1",
+        "Maestría 2025",
+        "ITEC 2025",
+        "Agrícola y Pecuaria 2025",
+        "Informática 2025",
+        "Facultad de Educación 2025",
+        "Educación Física 2025",
+        "Administración de Empresas 2025"
+      ],
+      "primer_pasaje": "Agroforestería 2025 · — · pág. 1",
+      "faltantes": [],
+      "ok": true,
+      "criterio": "todos estos documentos en el contexto: Agroforestería, Tecnología Industrial, Agrícola y Pecuaria"
+    },
+    {
+      "id": "R17",
+      "tipo": "panorama",
+      "pregunta": "¿Qué carreras ofrece la UVG Altiplano?",
+      "consulta": "¿Qué carreras ofrece la UVG Altiplano?",
+      "pasajes": 16,
+      "caracteres_contexto": 3935,
+      "documentos": [
+        "Maestría 2025",
+        "Bifoliar General 2025",
+        "Informática 2025",
+        "Educación Física 2025",
+        "Agroforestería 2025",
+        "Tecnología Industrial 2025 1",
+        "Centro de Idiomas 2025",
+        "Facultad de Educación 2025",
+        "Administración de Empresas 2025",
+        "ITEC 2025",
+        "Turismo 2025",
+        "Industrialización de Alimentos 2025"
+      ],
+      "primer_pasaje": "Maestría 2025 · — · pág. 1",
+      "ok": true,
+      "criterio": "al menos 8 documentos distintos"
+    },
+    {
+      "id": "R18",
+      "tipo": "informal",
+      "pregunta": "cuanto cuesta el curzo de ingles",
+      "consulta": "cuanto cuesta el curzo de ingles",
+      "pasajes": 8,
+      "caracteres_contexto": 4893,
+      "documentos": [
+        "Centro de Idiomas 2025",
+        "Reglamento de ayudas financieras"
+      ],
+      "primer_pasaje": "Centro de Idiomas 2025 · Develop your potencial in: · pág. 2",
+      "documento_esperado": "Centro de Idiomas",
+      "evidencia_esperada": "Q500",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 2,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R19",
+      "tipo": "informal",
+      "pregunta": "q necesito pa inscribirme en la u",
+      "consulta": "q necesito pa inscribirme en la u",
+      "pasajes": 8,
+      "caracteres_contexto": 3838,
+      "documentos": [
+        "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso",
+        "Reglamento de grupos estudiantiles",
+        "Reglamento de ayudas financieras",
+        "ITEC 2025"
+      ],
+      "primer_pasaje": "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso · — · pág. 1",
+      "documento_esperado": "Proceso de Admisión",
+      "evidencia_esperada": "inscripción",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 2,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R20",
+      "tipo": "sinonimo",
+      "pregunta": "¿Hasta cuándo puedo pagar la mensualidad de septiembre?",
+      "consulta": "¿Hasta cuándo puedo pagar la mensualidad de septiembre?",
+      "pasajes": 3,
+      "caracteres_contexto": 4043,
+      "documentos": [
+        "Calendario Académico"
+      ],
+      "primer_pasaje": "Calendario Académico · — · pág. 1",
+      "documento_esperado": "Calendario",
+      "evidencia_esperada": "cuota de estudios de septiembre",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R21",
+      "tipo": "sinonimo",
+      "pregunta": "¿Cómo armo un club en la universidad?",
+      "consulta": "¿Cómo armo un club en la universidad?",
+      "pasajes": 8,
+      "caracteres_contexto": 3389,
+      "documentos": [
+        "Reglamento de grupos estudiantiles"
+      ],
+      "primer_pasaje": "Reglamento de grupos estudiantiles · Capítulo 3 · Artículo 79. Objetivos de los clubes y agrupaciones · pág. 26",
+      "documento_esperado": "grupos estudiantiles",
+      "evidencia_esperada": "club",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 1,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R22",
+      "tipo": "seguimiento",
+      "pregunta": "¿Cuánto dura esa carrera?",
+      "consulta": "¿Cuánto dura esa carrera? ¿Qué es la Licenciatura en Tecnología de Sistemas Informáticos?",
+      "pasajes": 3,
+      "caracteres_contexto": 2590,
+      "documentos": [
+        "Informática 2025"
+      ],
+      "primer_pasaje": "Informática 2025 · — · pág. 1",
+      "documento_esperado": "Informática",
+      "evidencia_esperada": "5 AÑOS",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 3,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R23",
+      "tipo": "seguimiento",
+      "pregunta": "¿Y sus horarios?",
+      "consulta": "¿Y sus horarios? ¿Qué es la Licenciatura en Tecnología de Sistemas Informáticos?",
+      "pasajes": 3,
+      "caracteres_contexto": 2590,
+      "documentos": [
+        "Informática 2025"
+      ],
+      "primer_pasaje": "Informática 2025 · — · pág. 1",
+      "documento_esperado": "Informática",
+      "evidencia_esperada": "Jueves y viernes",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 3,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R24",
+      "tipo": "seguimiento",
+      "pregunta": "¿Dónde pido más información?",
+      "consulta": "¿Dónde pido más información? ¿Qué es la Licenciatura en Turismo?",
+      "pasajes": 3,
+      "caracteres_contexto": 2664,
+      "documentos": [
+        "Turismo 2025"
+      ],
+      "primer_pasaje": "Turismo 2025 · — · pág. 1",
+      "documento_esperado": "Turismo",
+      "evidencia_esperada": "ca.turismo@uvg.edu.gt",
+      "documento_encontrado": true,
+      "documento_top1": true,
+      "evidencia_encontrada": true,
+      "evidencia_rango": 3,
+      "ok": true,
+      "criterio": "documento esperado en el contexto Y el texto de evidencia en uno de sus pasajes"
+    },
+    {
+      "id": "R25",
+      "tipo": "abstencion",
+      "pregunta": "¿Cuál es la capital de Francia?",
+      "consulta": "¿Cuál es la capital de Francia?",
+      "pasajes": 0,
+      "caracteres_contexto": 0,
+      "documentos": [],
+      "primer_pasaje": null,
+      "ok": true,
+      "criterio": "sin pasajes (abstención antes de llamar al modelo)"
+    },
+    {
+      "id": "R26",
+      "tipo": "abstencion",
+      "pregunta": "¿Quién ganó el mundial de 2022?",
+      "consulta": "¿Quién ganó el mundial de 2022?",
+      "pasajes": 0,
+      "caracteres_contexto": 0,
+      "documentos": [],
+      "primer_pasaje": null,
+      "ok": true,
+      "criterio": "sin pasajes (abstención antes de llamar al modelo)"
+    },
+    {
+      "id": "R27",
+      "tipo": "abstencion",
+      "pregunta": "¿Cómo preparo un pastel de chocolate?",
+      "consulta": "¿Cómo preparo un pastel de chocolate?",
+      "pasajes": 0,
+      "caracteres_contexto": 0,
+      "documentos": [],
+      "primer_pasaje": null,
+      "ok": true,
+      "criterio": "sin pasajes (abstención antes de llamar al modelo)"
+    },
+    {
+      "id": "R28",
+      "tipo": "abstencion_llm",
+      "pregunta": "¿Cuánto cuesta la carrera de Medicina en la UVG Altiplano?",
+      "consulta": "¿Cuánto cuesta la carrera de Medicina en la UVG Altiplano?",
+      "pasajes": 8,
+      "caracteres_contexto": 3989,
+      "documentos": [
+        "Maestría 2025",
+        "Informática 2025",
+        "Reglamento de ayudas financieras",
+        "Facultad de Educación 2025",
+        "Proceso de Admisión e Inscripción Estudiante de Primer Ingreso",
+        "Administración de Empresas 2025"
+      ],
+      "primer_pasaje": "Maestría 2025 · — · pág. 1",
+      "ok": null,
+      "criterio": "Puede recuperar folletos; la abstención la decide la verificación de Claude."
+    }
+  ]
+}

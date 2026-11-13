@@ -23,6 +23,7 @@ class LLMPort(ABC):
         user_prompt: str,
         output_schema: dict[str, Any],
         output_schema_name: str,
+        max_tokens: int | None = None,
     ) -> LLMCompletion:
         """Invoke the LLM once at temperature 0.0 (FR-09), forcing structured output that
         conforms to `output_schema` (a JSON Schema object), and return it parsed."""

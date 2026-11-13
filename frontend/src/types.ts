@@ -9,6 +9,18 @@ export interface SourceReference {
   document_title?: string | null;
   section?: string | null;
   page_end?: number | null;
+  document_id?: string | null;
+  /** Ruta del backend que sirve el PDF original (p. ej. /documents/<id>/file). */
+  document_url?: string | null;
+}
+
+export interface Usage {
+  llm_calls: number;
+  input_tokens: number;
+  output_tokens: number;
+  cost_usd: number;
+  model: string | null;
+  simulated: boolean;
 }
 
 export interface AnswerResponse {
@@ -21,6 +33,8 @@ export interface AnswerResponse {
   created_at: string;
   sources: SourceReference[];
   search_query: string | null;
+  intent: string;
+  usage: Usage;
 }
 
 export interface HistoryMessage {
@@ -31,6 +45,7 @@ export interface HistoryMessage {
   is_grounded: boolean | null;
   confidence: Confidence | null;
   sources: SourceReference[];
+  status?: AnswerStatus | null;
 }
 
 export interface Conversation {
@@ -49,6 +64,7 @@ export interface Health {
   indexed_chunks: number;
   llm_configured: boolean;
   llm_model: string;
+  llm_mode?: "real" | "simulado";
 }
 
 /** Un turno tal como lo muestra la interfaz. */
@@ -60,4 +76,5 @@ export interface ChatMessage {
   confidence?: Confidence | null;
   sources?: SourceReference[];
   pending?: boolean;
+  simulated?: boolean;
 }

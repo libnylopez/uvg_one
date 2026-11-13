@@ -15,6 +15,7 @@ async def health_check(request: Request) -> dict[str, object]:
     return {
         "status": "ok",
         "indexed_chunks": chroma.count() if chroma else 0,
-        "llm_configured": settings.is_configured,
+        "llm_configured": settings.mode == "simulado" or settings.is_configured,
         "llm_model": settings.model,
+        "llm_mode": settings.mode,
     }

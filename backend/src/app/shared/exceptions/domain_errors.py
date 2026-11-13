@@ -50,3 +50,7 @@ class LLMNotConfiguredError(LLMGenerationError):
 
 class LLMUnavailableError(LLMGenerationError):
     """Raised when the LLM provider is temporarily unavailable (rate limit, overload, network)."""
+
+
+class LLMBudgetExceededError(LLMGenerationError):
+    """Raised before calling the LLM when the configured spending budget would be exceeded."""

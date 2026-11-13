@@ -1,0 +1,300 @@
+{
+  "correctas": 49,
+  "total": 49,
+  "resultados": [
+    {
+      "grupo": "A conversación",
+      "prueba": "«Hola» se responde localmente",
+      "ok": true,
+      "detalle": "status=smalltalk llamadas=0"
+    },
+    {
+      "grupo": "A conversación",
+      "prueba": "«Buenos días» se responde localmente",
+      "ok": true,
+      "detalle": "status=smalltalk llamadas=0"
+    },
+    {
+      "grupo": "A conversación",
+      "prueba": "«¿Cómo estás?» se responde localmente",
+      "ok": true,
+      "detalle": "status=smalltalk llamadas=0"
+    },
+    {
+      "grupo": "A conversación",
+      "prueba": "«¿Quién eres?» se responde localmente",
+      "ok": true,
+      "detalle": "status=smalltalk llamadas=0"
+    },
+    {
+      "grupo": "A conversación",
+      "prueba": "«Gracias» se responde localmente",
+      "ok": true,
+      "detalle": "status=smalltalk llamadas=0"
+    },
+    {
+      "grupo": "A conversación",
+      "prueba": "«Adiós» se responde localmente",
+      "ok": true,
+      "detalle": "status=smalltalk llamadas=0"
+    },
+    {
+      "grupo": "A conversación",
+      "prueba": "«¿En qué puedes ayudarme?» se responde localmente",
+      "ok": true,
+      "detalle": "status=smalltalk llamadas=0"
+    },
+    {
+      "grupo": "A conversación",
+      "prueba": "«Hola, ¿qué carreras ofrece la UVG?» es consulta institucional (RAG, panorama)",
+      "ok": true,
+      "detalle": "status=answered búsqueda='qué carreras ofrece la UVG?'"
+    },
+    {
+      "grupo": "C seguimiento",
+      "prueba": "1.ª pregunta inicia el tema",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "C seguimiento",
+      "prueba": "«¿Cuánto dura esa carrera?» conserva el referente",
+      "ok": true,
+      "detalle": "¿Cuánto dura esa carrera? ¿Qué información tienes sobre Ingeniería en Informática?"
+    },
+    {
+      "grupo": "C seguimiento",
+      "prueba": "«¿Y cuáles son sus requisitos?» conserva el referente",
+      "ok": true,
+      "detalle": "¿Y cuáles son sus requisitos? ¿Qué información tienes sobre Ingeniería en Informática?"
+    },
+    {
+      "grupo": "C seguimiento",
+      "prueba": "el seguimiento cita el folleto de Informática",
+      "ok": true,
+      "detalle": "['Informática 2025']"
+    },
+    {
+      "grupo": "C seguimiento",
+      "prueba": "el historial guarda los 6 turnos con su estado",
+      "ok": true,
+      "detalle": "6 turnos"
+    },
+    {
+      "grupo": "D abstención",
+      "prueba": "«¿Cuál es la capital de Francia?» se abstiene sin llamar al modelo",
+      "ok": true,
+      "detalle": "abstained"
+    },
+    {
+      "grupo": "D abstención",
+      "prueba": "«¿Quién ganó el mundial de 2022?» se abstiene sin llamar al modelo",
+      "ok": true,
+      "detalle": "abstained"
+    },
+    {
+      "grupo": "D abstención",
+      "prueba": "«¿Cómo preparo un pastel de chocolate?» se abstiene sin llamar al modelo",
+      "ok": true,
+      "detalle": "abstained"
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Centro de Idiomas 2025 pág. 2: el enlace abre el PDF original",
+      "ok": true,
+      "detalle": "HTTP 200"
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Centro de Idiomas 2025 pág. 2: la página existe (de 2)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Centro de Idiomas 2025 pág. 2: corresponde a un pasaje recuperado (documento y rango de páginas)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Centro de Idiomas 2025 pág. 2: no expone rutas del sistema",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Reglamento de ayudas financieras pág. 4: el enlace abre el PDF original",
+      "ok": true,
+      "detalle": "HTTP 200"
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Reglamento de ayudas financieras pág. 4: la página existe (de 21)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Reglamento de ayudas financieras pág. 4: corresponde a un pasaje recuperado (documento y rango de páginas)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Reglamento de ayudas financieras pág. 4: no expone rutas del sistema",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Calendario Académico pág. 2: el enlace abre el PDF original",
+      "ok": true,
+      "detalle": "HTTP 200"
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Calendario Académico pág. 2: la página existe (de 8)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Calendario Académico pág. 2: corresponde a un pasaje recuperado (documento y rango de páginas)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Calendario Académico pág. 2: no expone rutas del sistema",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Turismo 2025 pág. 1: el enlace abre el PDF original",
+      "ok": true,
+      "detalle": "HTTP 200"
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Turismo 2025 pág. 1: la página existe (de 2)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Turismo 2025 pág. 1: corresponde a un pasaje recuperado (documento y rango de páginas)",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "E citas",
+      "prueba": "Turismo 2025 pág. 1: no expone rutas del sistema",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "F errores",
+      "prueba": "chat sin sesión → 401",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "F errores",
+      "prueba": "token inválido → 401",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "F errores",
+      "prueba": "pregunta vacía → 422",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "F errores",
+      "prueba": "pregunta de más de 2000 caracteres → 422",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "F errores",
+      "prueba": "documento inexistente → 404",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "path traversal /documents/..%2F..%2F.env/file bloqueado",
+      "ok": true,
+      "detalle": "HTTP 404"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "path traversal /documents/../../.env bloqueado",
+      "ok": true,
+      "detalle": "HTTP 404"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "path traversal /documents/%2e%2e/%2e%2e/etc/passwd/file bloqueado",
+      "ok": true,
+      "detalle": "HTTP 404"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "path traversal /documents/../../backend/.env/file bloqueado",
+      "ok": true,
+      "detalle": "HTTP 404"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "POST sobre un PDF no está permitido",
+      "ok": true,
+      "detalle": "HTTP 405"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "PUT sobre un PDF no está permitido",
+      "ok": true,
+      "detalle": "HTTP 405"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "DELETE sobre un PDF no está permitido",
+      "ok": true,
+      "detalle": "HTTP 405"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "PATCH sobre un PDF no está permitido",
+      "ok": true,
+      "detalle": "HTTP 405"
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "health/usage/documents no exponen la API key ni rutas absolutas",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "el log del backend no contiene la API key",
+      "ok": true,
+      "detalle": ""
+    },
+    {
+      "grupo": "G seguridad",
+      "prueba": "CORS no autoriza orígenes ajenos",
+      "ok": true,
+      "detalle": "HTTP 400"
+    },
+    {
+      "grupo": "Costo",
+      "prueba": "ninguna llamada a Anthropic durante estas pruebas",
+      "ok": true,
+      "detalle": "0 llamadas"
+    }
+  ]
+}

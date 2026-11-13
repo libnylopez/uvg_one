@@ -32,12 +32,15 @@ services:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-uvg_one}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-uvg_one}
       CHROMA_PERSIST_DIR: /app/data/chroma
       DOCUMENTS_DIR: /app/documentos_uvg
+      ANTHROPIC_USAGE_LOG_PATH: /app/data/usage/anthropic_usage.jsonl
       CORS_ORIGINS: http://localhost:5180,http://127.0.0.1:5180
     depends_on:
       postgres:
         condition: service_healthy
     volumes:
       - chroma_data:/app/data/chroma
+      # Registro de consumo de la API (persiste el presupuesto gastado entre reinicios).
+      - usage_data:/app/data/usage
       # Los PDF se leen directamente de la carpeta del proyecto, en solo lectura.
       - ./documentos_uvg:/app/documentos_uvg:ro
     ports:
@@ -65,3 +68,4 @@ services:
 volumes:
   postgres_data:
   chroma_data:
+  usage_data:

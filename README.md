@@ -7,6 +7,20 @@ en `documentos_uvg/`, muestra las fuentes de cada respuesta y reconoce cuando no
 Proyecto del curso de Inteligencia Artificial (prototipo funcional, arquitectura RAG).
 
 > **¿Primera vez?** Sigue la guía [CONFIGURACION_LOCAL.md](CONFIGURACION_LOCAL.md) para levantar el proyecto en tu computadora.
+>
+> Prototipo académico: no es un servicio oficial de la UVG.
+
+## Qué hace
+
+- **Conversa**: saludos, cortesía, identidad y ayuda se resuelven localmente, sin llamar a Claude.
+- **Responde con documentos oficiales**: recuperación híbrida sobre 17 PDF y respuesta de Claude verificada contra la evidencia.
+- **Muestra fuentes verificables**: documento, sección y página, con un botón para abrir el PDF original en esa página.
+- **Mantiene el contexto**: «¿cuánto dura esa carrera?» se entiende por el tema de la conversación (sin llamada extra).
+- **Se abstiene** cuando los documentos no respaldan una respuesta.
+- **Controla el costo**: registra tokens y costo de cada llamada y bloquea cualquier llamada que supere el presupuesto.
+
+Documentación: [pruebas](docs/INFORME_PRUEBAS.md) · [consumo de API](docs/INFORME_CONSUMO.md) ·
+[guía de demostración](docs/GUIA_DEMO.md) · [alcance y limitaciones](docs/LIMITACIONES.md).
 
 ## Arquitectura
 
@@ -16,12 +30,12 @@ Navegador ── React (Vite, nginx) :5180
    ▼
 FastAPI :8010 ───────────────► PostgreSQL (historial, registro de documentos)
    │
-   ├─ 1. Saludo/presentación → respuesta local (sin IA)
-   ├─ 2. Pregunta de seguimiento → Claude la reescribe como consulta autosuficiente
+   ├─ 1. Clasificación local de la intención → saludo/cortesía/identidad/ayuda: respuesta local (0 tokens)
+   ├─ 2. Seguimiento → pregunta + tema vigente, buscada dentro de los documentos del tema (0 tokens)
    ├─ 3. Recuperación híbrida: embeddings multilingües (ChromaDB) + búsqueda léxica (BM25) + fusión RRF
    ├─ 4. Sin evidencia suficiente → abstención (sin llamar al modelo)
-   ├─ 5. Claude responde y autoverifica cada afirmación (una llamada, salida JSON con esquema)
-   └─ 6. No fundamentada → abstención · Fundamentada → respuesta + fuentes citadas
+   ├─ 5. Control de presupuesto → Claude responde y autoverifica (una llamada, salida JSON con esquema)
+   └─ 6. No fundamentada → abstención · Fundamentada → respuesta + fuentes (documento, sección, página, PDF)
 
 Ingesta (al arrancar o con POST /documents/sync):
 documentos_uvg/*.pdf → PyMuPDF → limpieza → fragmentos por estructura → embeddings → ChromaDB
@@ -105,11 +119,29 @@ Para ver el progreso: `docker compose logs -f backend`. Para detener: `docker co
 | `GET` | `/chat/history` | Historial de la sesión |
 | `GET` | `/documents` | Documentos indexados y su estado |
 | `POST` | `/documents/sync` | Re-sincroniza `documentos_uvg/` |
-| `GET` | `/search?q=...` | Diagnóstico: pasajes que el RAG recuperaría (sin llamar a Claude) |
-| `GET` | `/health` | Estado del servicio, fragmentos indexados, si Claude está configurado |
+| `GET` | `/documents/{id}/file` | PDF original (solo lectura; admite `#page=N` en el navegador) |
+| `GET` | `/search?q=...&topic=...` | Diagnóstico: pasajes que el RAG recuperaría (sin llamar a Claude) |
+| `GET` | `/usage` | Consumo de la API: llamadas, tokens, costo estimado y presupuesto restante |
+| `GET` | `/health` | Estado del servicio, fragmentos indexados, modo (real/simulado) |
 
 El campo `status` de `/chat` indica el tipo de respuesta: `answered` (con fuentes), `abstained`
-(sin evidencia suficiente), `smalltalk`, `no_documents` o `error` (falla de la API de Claude).
+(sin evidencia suficiente), `smalltalk`, `no_documents` o `error` (falla de la API o presupuesto agotado).
+`usage` indica las llamadas a Claude, los tokens y el costo estimado de esa respuesta.
+
+## Control de costos de la API
+
+| Variable (`.env`) | Por defecto | Efecto |
+|---|---|---|
+| `ANTHROPIC_MODEL` | `claude-haiku-5-5` | US$0.10 / US$0.50 por millón de tokens de entrada / salida (prompts ≤ 100 000 tokens) |
+| `ANTHROPIC_BUDGET_USD` | `0.50` | Antes de cada llamada: gastado + cota pesimista de la llamada ≤ presupuesto; si no, no se llama |
+| `ANTHROPIC_MAX_TOKENS` | `4000` | Tope de salida por llamada |
+| `ANTHROPIC_MAX_RETRIES` | `1` | Reintentos ante errores transitorios; errores de clave, saldo o permisos no se reintentan |
+| `ANTHROPIC_MODE` | `real` | `simulado`: respuestas locales marcadas como SIMULACIÓN (pruebas y demo sin conexión) |
+| `REWRITE_MODE` | `local` | `llm`: Claude reescribe los seguimientos (una llamada extra por turno) |
+
+Cada llamada se registra en `backend/data/usage/anthropic_usage.jsonl` (modelo, tokens, costo, tiempo,
+tipo; nunca claves, prompts ni respuestas). Resumen en `GET /usage`. Saludos y abstenciones sin
+evidencia cuestan 0; una consulta respondida hace **una** llamada.
 
 ## Desarrollo local (sin Docker para el backend)
 
@@ -133,9 +165,15 @@ contenedor; no ejecutes el backend local y el de Docker al mismo tiempo (ambos u
 ## Pruebas
 
 ```bash
-cd backend && .venv/bin/pytest -q      # sincronización, flujo del agente, adaptador de Claude
-cd frontend && npm test                # componentes de mensaje y fuentes
+cd backend && .venv/bin/pytest -q                        # 74 pruebas unitarias
+cd frontend && npm test                                  # 9 pruebas de componentes y cliente HTTP
+./scripts/iniciar.sh --simulado                          # backend sin consumir la API
+python3 evaluacion/evaluar_recuperacion.py               # recuperación con 28 preguntas reales
+backend/.venv/bin/python evaluacion/prueba_integracion.py  # 49 pruebas HTTP de extremo a extremo
 ```
+
+Resultados en [docs/INFORME_PRUEBAS.md](docs/INFORME_PRUEBAS.md). La validación con la API real
+(`evaluacion/validacion_real.py`) solo se ejecuta con `--autorizado` y respeta el presupuesto.
 
 ## Estructura
 
@@ -151,7 +189,9 @@ uvg_one/
 │   └── tests/
 ├── frontend/src/            interfaz de chat (React)
 ├── infrastructure/docker/   Dockerfiles
-├── scripts/                 utilidades de desarrollo
+├── evaluacion/              bancos de preguntas y scripts de evaluación
+├── docs/                    informes de pruebas y consumo, guía de demo, limitaciones
+├── scripts/                 arranque local y utilidades
 └── docker-compose.yml
 ```
 

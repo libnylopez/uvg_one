@@ -30,3 +30,6 @@ class Message:
     """Distinct filenames of the documents behind source_chunk_ids (explainability, sprint 1 demo)."""
     sources: tuple[SourceReference, ...] = field(default_factory=tuple)
     """Precise citations (document, article, pages) since ADR-0014; empty for older messages."""
+    # Tema de la conversación tras este turno (lo usa el siguiente seguimiento) y tipo de respuesta.
+    topic_query: str | None = None
+    status: str | None = None

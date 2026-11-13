@@ -9,7 +9,7 @@ from fastapi import Depends, Header, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.application.services.context_retrieval import ContextRetrieval
-from app.application.services.query_rewriter import QueryRewriter
+from app.application.services.query_rewriter import LocalFollowUpResolver, QueryRewriter
 from app.application.use_cases.answer_question import AnswerQuestionUseCase
 from app.application.use_cases.start_guest_session import StartGuestSessionUseCase
 from app.domain.entities.user import User
@@ -68,6 +68,13 @@ def get_context_retrieval(request: Request) -> ContextRetrieval:
     )
 
 
+def get_query_rewriter(request: Request) -> QueryRewriter | LocalFollowUpResolver:
+    local = LocalFollowUpResolver(request.app.state.corpus_index.list_outlines)
+    if get_app_settings().rewrite_mode == "llm":
+        return QueryRewriter(request.app.state.llm_port, fallback=local)
+    return local
+
+
 def get_answer_question_use_case(
     request: Request,
     conversation_repository: Annotated[ConversationRepositoryPort, Depends(get_conversation_repository)],
@@ -79,7 +86,7 @@ def get_answer_question_use_case(
         document_repository=document_repository,
         context_retrieval=get_context_retrieval(request),
         verification_port=state.verification_port,
-        query_rewriter=QueryRewriter(state.llm_port),
+        query_rewriter=get_query_rewriter(request),
         indexed_chunk_count=state.chroma.count(),
         history_turns=get_app_settings().history_turns,
     )

@@ -14,6 +14,8 @@ from app.infrastructure.adapters.document_processing.pymupdf_extractor import (
     PyMuPDFExtractorAdapter,
 )
 from app.infrastructure.adapters.llm.anthropic_llm_adapter import AnthropicLLMAdapter
+from app.infrastructure.adapters.llm.simulated_llm_adapter import SimulatedLLMAdapter
+from app.infrastructure.adapters.llm.usage_ledger import UsageLedger
 from app.infrastructure.adapters.llm.single_call_verification_adapter import (
     SingleCallVerificationAdapter,
 )
@@ -35,7 +37,7 @@ from app.infrastructure.config.settings import (
 from app.infrastructure.entrypoints.api.middlewares.error_handlers import (
     register_exception_handlers,
 )
-from app.infrastructure.entrypoints.api.routers import auth, chat, documents, health, search
+from app.infrastructure.entrypoints.api.routers import auth, chat, documents, health, search, usage
 
 
 def _configure_logging() -> None:
@@ -62,7 +64,12 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     app.state.corpus_index = corpus_index
     app.state.vector_store_port = SynchronizedVectorStore(chroma, corpus_index)
     app.state.text_extractor_port = PyMuPDFExtractorAdapter()
-    llm_port = AnthropicLLMAdapter(anthropic_settings)
+    app.state.usage_ledger = UsageLedger(anthropic_settings.usage_log_path, anthropic_settings.budget_usd)
+    if anthropic_settings.mode == "simulado":
+        logger.warning("MODO SIMULACIÓN: las respuestas se arman localmente y NO las genera Claude")
+        llm_port = SimulatedLLMAdapter()
+    else:
+        llm_port = AnthropicLLMAdapter(anthropic_settings, app.state.usage_ledger)
     app.state.llm_port = llm_port
     app.state.verification_port = SingleCallVerificationAdapter(llm_port)
     app.state.auth_port = InstitutionalAuthAdapter(get_auth_settings())
@@ -81,13 +88,16 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         )
     corpus_index.reload()
 
-    if not anthropic_settings.is_configured:
+    if anthropic_settings.mode == "real" and not anthropic_settings.is_configured:
         logger.warning("ANTHROPIC_API_KEY no está configurada: el chat no podrá generar respuestas")
     logger.info(
-        "UVG ONE listo: {} fragmentos indexados, modelo={}, embeddings={}",
+        "UVG ONE listo: {} fragmentos indexados, modelo={} ({}), embeddings={}, consumo US${:.4f} de US${:.2f}",
         chroma.count(),
         anthropic_settings.model,
+        anthropic_settings.mode,
         rag_settings.embedding_model_name,
+        app.state.usage_ledger.spent_usd,
+        app.state.usage_ledger.budget_usd,
     )
     yield
     await get_engine().dispose()
@@ -108,6 +118,7 @@ def create_app() -> FastAPI:
     app.include_router(chat.router)
     app.include_router(documents.router)
     app.include_router(search.router)
+    app.include_router(usage.router)
     return app
 
 

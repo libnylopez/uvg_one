@@ -48,3 +48,6 @@ class VerifiedAnswer:
     coverage: AnswerCoverage = AnswerCoverage.COMPLETE
     input_tokens: int | None = None
     output_tokens: int | None = None
+    cost_usd: float = 0.0
+    model: str | None = None
+    simulated: bool = False

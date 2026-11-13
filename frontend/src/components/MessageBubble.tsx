@@ -41,6 +41,9 @@ export function MessageBubble({ message }: { message: ChatMessage }) {
   return (
     <div className={`message message-assistant status-${message.status ?? "answered"}`}>
       <div className="bubble">
+        {message.simulated && (
+          <div className="simulated-note">Simulación · respuesta armada localmente, no generada por Claude</div>
+        )}
         {note && <div className="status-note">{note}</div>}
         <div className="markdown">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{normalizeMarkdown(message.content)}</ReactMarkdown>

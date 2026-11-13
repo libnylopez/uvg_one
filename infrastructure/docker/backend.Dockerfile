@@ -46,7 +46,7 @@ ARG EMBEDDING_MODEL=paraphrase-multilingual-MiniLM-L12-v2
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('${EMBEDDING_MODEL}')"
 
 RUN chmod +x ./docker-entrypoint.sh \
-    && mkdir -p /app/data/chroma /app/documentos_uvg \
+    && mkdir -p /app/data/chroma /app/data/usage /app/documentos_uvg \
     && chown -R appuser:appuser /app /home/appuser
 USER appuser
 

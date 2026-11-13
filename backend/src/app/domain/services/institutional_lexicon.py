@@ -37,7 +37,11 @@ _SYNONYM_GROUPS: tuple[tuple[str, ...], ...] = (
     ("horas beca", "horas de servicio"),
     ("carne", "carnet"),
     ("fecha limite", "ultimo dia", "plazo"),
-    ("duracion", "dura", "durar", "periodo"),
+    # Los folletos dicen «Ingeniería: 3 años · 5 años Total de la carrera».
+    ("duracion", "dura", "duran", "durar", "periodo", "años", "total de la carrera"),
+    # «¿Qué necesito para inscribirme?»: el proceso de admisión habla de la solicitud y sus documentos.
+    ("que necesito para inscribirme", "requisitos de inscripcion", "documentos", "solicitud de admision",
+     "dpi", "certificacion de cursos aprobados"),
     ("miembro", "integrante", "socio", "membresia"),
     ("crear", "formar", "fundar", "conformacion", "constitucion"),
     ("incumplimiento", "no cumplir", "no cumplo"),
@@ -103,6 +107,10 @@ _DOMAIN_WORDS = (
     "elecciones", "calendario", "graduacion", "matricula", "promedio", "cobertura", "colegiatura", "mensualidad",
     "licenciatura", "ingenieria", "maestria", "suficiencia", "solicitud", "financiera", "financieras",
     "asociacion", "carrera", "carreras", "estudiante", "universidad", "reprobar", "beneficios", "beneficio",
+    # UVG ONE: carreras, idiomas y calendario.
+    "curso", "cursos", "ingles", "idiomas", "nivel", "niveles", "horario", "horarios", "costo", "costos",
+    "precio", "turismo", "informatica", "sistemas", "profesorado", "tecnico", "modalidad", "semestre",
+    "inscribirme", "calendario", "feria", "cuota", "cuotas", "maestrias", "ingenierias", "licenciaturas",
 )
 _DOMAIN_SET = frozenset(_DOMAIN_WORDS)
 # Faltas que no son de una sola edición o que afectan palabras comunes.
@@ -118,14 +126,17 @@ _INLINE_ABBREVIATIONS = {
     "req": "requisitos", "reqs": "requisitos", "insc": "inscripción", "inscrip": "inscripción", "cred": "crédito",
     "educ": "educativo", "info": "información", "reglam": "reglamento", "1er": "primer", "1ro": "primero",
     "pq": "porque", "xq": "porque", "tmb": "también", "tb": "también", "x": "por",
+    "pa": "para", "q": "que", "k": "que", "ke": "que", "tons": "entonces", "porfa": "por favor",
 }
+# «la u», «en la u»: forma coloquial de «la universidad» (solo tras artículo, para no tocar la «u» conjunción).
+_COLLOQUIAL_U = re.compile(r"\b(la|esta|esa|tu|mi)\s+u\b", re.IGNORECASE)
 
 
 def expand_abbreviations(text: str) -> str:
     def fix(match: re.Match[str]) -> str:
         return _INLINE_ABBREVIATIONS.get(match.group(0).lower(), match.group(0))
 
-    return re.sub(r"\b\w+\b", fix, text)
+    return _COLLOQUIAL_U.sub(lambda m: f"{m.group(1)} universidad", re.sub(r"\b\w+\b", fix, text))
 
 
 def correct_typos(text: str) -> str:

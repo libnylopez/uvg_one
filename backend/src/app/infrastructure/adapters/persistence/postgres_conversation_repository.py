@@ -50,6 +50,8 @@ class PostgresConversationRepository(ConversationRepositoryPort):
             source_chunk_ids=list(message.source_chunk_ids),
             source_document_names=list(message.source_document_names),
             sources=[source.to_record() for source in message.sources] or None,
+            topic_query=message.topic_query,
+            status=message.status,
         )
         self._session.add(model)
         await self._session.flush()
@@ -82,6 +84,8 @@ class PostgresConversationRepository(ConversationRepositoryPort):
                     source_chunk_ids=tuple(m.source_chunk_ids),
                     source_document_names=tuple(m.source_document_names),
                     sources=tuple(SourceReference.from_record(record) for record in m.sources or ()),
+                    topic_query=m.topic_query,
+                    status=m.status,
                 )
                 for m in model.messages
             ],

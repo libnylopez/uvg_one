@@ -1,6 +1,11 @@
 import type { AnswerResponse, Conversation, GuestSession, Health } from "./types";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8010";
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8010";
+
+/** Enlace al PDF original; `#page=N` lo abre en la página citada en visores compatibles. */
+export function documentLink(url: string, page?: number | null): string {
+  return `${API_BASE_URL}${url}${page ? `#page=${page}` : ""}`;
+}
 const TOKEN_KEY = "uvg-one.session";
 // Una respuesta pasa por recuperación + hasta dos llamadas a Claude: se da margen.
 const CHAT_TIMEOUT_MS = 90_000;

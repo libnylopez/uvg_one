@@ -17,11 +17,18 @@ class AnthropicSettings(BaseSettings):
     # Vacía es válido: el backend arranca, indexa y responde con un error claro al chatear.
     api_key: str = Field(default="", repr=False)
     model: str = "claude-haiku-5-5"
+    # real: llama a Claude. simulado: respuestas locales marcadas como SIMULACIÓN (pruebas y demo offline).
+    mode: Literal["real", "simulado"] = "real"
     # Profundidad de razonamiento del modelo: low es suficiente para responder sobre documentos.
     effort: Literal["low", "medium", "high"] = "low"
-    # Incluye el razonamiento interno del modelo, que también cuenta contra este tope.
-    max_tokens: int = 8000
+    # Tope de salida por llamada (incluye el razonamiento interno del modelo).
+    max_tokens: int = 4000
     timeout_seconds: float = 60.0
+    # Reintentos automáticos del SDK ante errores transitorios (nunca ilimitados).
+    max_retries: int = 1
+    # Presupuesto de seguridad: ninguna llamada se hace si lo gastado + la estimación lo supera.
+    budget_usd: float = 0.50
+    usage_log_path: str = "./data/usage/anthropic_usage.jsonl"
 
     @property
     def is_configured(self) -> bool:
@@ -84,6 +91,8 @@ class AppSettings(BaseSettings):
     documents_dir: str = "../documentos_uvg"
     # Cuántos turnos previos se usan para entender preguntas de seguimiento.
     history_turns: int = 6
+    # Seguimientos: local (sin costo) o llm (Claude reescribe la pregunta: una llamada extra).
+    rewrite_mode: Literal["local", "llm"] = "local"
 
     @property
     def cors_origins_list(self) -> list[str]:

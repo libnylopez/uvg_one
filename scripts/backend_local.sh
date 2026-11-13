@@ -6,7 +6,9 @@
 #      ./scripts/backend_local.sh migrate    → solo aplica migraciones
 set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+FORCED_MODE="${ANTHROPIC_MODE:-}"   # --simulado (o una variable exportada) manda sobre el .env
 set -a; . "$ROOT/.env"; set +a
+[ -n "$FORCED_MODE" ] && export ANTHROPIC_MODE="$FORCED_MODE"
 export DATABASE_URL="postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@127.0.0.1:5442/${POSTGRES_DB}"
 export CHROMA_PERSIST_DIR="$ROOT/backend/data/chroma"
 export DOCUMENTS_DIR="$ROOT/documentos_uvg"
